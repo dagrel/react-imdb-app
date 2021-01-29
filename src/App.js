@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 // import { keyframes } from '@emotion/react';
-import FrontPage from "./Components/Movies/Frontpage"
+import Dashboard from "./Components/Movies/Dashboard.js"
 
 const AppContainer = styled.div`
   text-align: center;
@@ -20,7 +20,7 @@ function App() {
   return (
     <AppContainer>
       <AppHeader>
-       <FrontPage />
+       <Dashboard />
       </AppHeader>
     </AppContainer>
   );

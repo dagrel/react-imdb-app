@@ -8,7 +8,7 @@ export const Button = (props) => {
     background-color : ${props.color};
     margin : 5px;
     `
-   
+
     return (
         <>
             <Button >{props.title}</Button>
