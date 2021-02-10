@@ -1,0 +1,24 @@
+useMemo(() => {
+            let sortedMovies = [...movies]
+            if (sortConfig !== null) {
+                sortedMovies.sort((a, b) => {
+                    if (a[sortConfig] < b[sortConfig]) {
+                        return sortConfig.direction === 'ascending' ? -1 : 1
+                    }
+                    if (a[sortConfig] > b[sortConfig]) {
+                        return sortConfig.direction === 'ascending' ? 1 : -1
+                    }
+                    return 0
+                })
+            }
+            return sortedMovies
+        }, [movies, sortConfig])
+
+
+        const requestSort = key => {
+            let direction = 'ascending';
+            if (sortConfig.key === key && sortConfig.direction === 'ascending') {
+                direction = 'descending';
+            }
+            setSortConfig({ key, direction });
+        }

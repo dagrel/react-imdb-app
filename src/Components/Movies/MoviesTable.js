@@ -1,4 +1,5 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect, } from 'react'
+import useSortableData from "../CustomHooks/TableSort"
 import styled from '@emotion/styled';
 //import { Button, ButtonTwo } from "../StyledComponents/StyledComponents"
 
@@ -12,7 +13,7 @@ const MoviesTable = () => {
 
     const getMovies = async () => {
 
-        const url = `http://www.omdbapi.com/?s=code&y=2020&apikey=616df5e1`
+        const url = `http://www.omdbapi.com/?s=covid&y=2020&apikey=616df5e1`
         try {
             const response = await fetch(url);
             const result = await response.json();
@@ -23,34 +24,13 @@ const MoviesTable = () => {
             console.log(error);
         }
     }
-
-    const renderMovies = (item, index) => {
-        return (
-            <tr key={index}>
-                <titleButton>
-                    <MTd>{item.Title}</MTd>
-                </titleButton>
-
-                <MTd>{item.Year}</MTd>
-                <MTd>{item.imdbID}</MTd>
-                <MTd>{item.Type}</MTd>
-                {/* <td>{item.Poster}</td> */}
-            </tr>
-        )
-    }
-
-    const titleButton = styled.button`
-       
-        text-decoration: underline;
-        cursor: pointer;
-    `
-
+    console.log(movieData)
 
     const MTable = styled.table`
         border-collapse: collapse; 
         width: 80%; 
         border: 1px solid #ddd; 
-        font-size: 18px; 
+        font-size: 14px; 
         `
 
     const MTh = styled.th`
@@ -69,26 +49,63 @@ const MoviesTable = () => {
         border: 1px solid grey;
         `
 
-    return (
-        <>
-            <h3>Filmer eller serier som inneholder ordet "Code" fra 2020</h3>
-            <Fragment>
+    const TheadButton = styled.button`
+        border: 0;
+        border-radius: none;
+        font-family: inherit;
+        font-weight: 700;
+        font-size: inherit;
+        padding: 0.5em;
+        margin-bottom: 1px;
+    `
+
+
+    const ProductTable = () => {
+
+        const { items, requestSort, sortConfig } = useSortableData(movieData)
+        const getClassNamesFor = (name) => {
+            if (!sortConfig) {
+                return;
+            }
+            return sortConfig.key === name ? sortConfig.direction : undefined;
+        }
+
+        return (
+            <>
+                <h3>Filmer eller serier som inneholder ordet "Code" fra 2020</h3>
                 <MTable>
                     <thead>
                         <Mtr >
-                            <MTh>Tittel</MTh>
-                            <MTh>År</MTh>
-                            <MTh>Imdb ID</MTh>
-                            <MTh>Type</MTh>
-                            {/* <th>Bilde</th> */}
+                            <MTh><button type="button" className={getClassNamesFor('Title')} onClick={() => requestSort('Title')}>Tittel</button></MTh>
+                            <MTh><button type="button" className={getClassNamesFor('Year')} onClick={() => requestSort('Year')}>År</button></MTh>
+                            <MTh><button type="button" className={getClassNamesFor('imdbID')} onClick={() => requestSort('imdbID')}>IMDB ID</button></MTh>
+                            <MTh><button type="button" className={getClassNamesFor('Type')} onClick={() => requestSort('Type')}>Type</button></MTh>
+                            <MTh>Detaljer</MTh>
                         </Mtr>
                     </thead>
+
                     <tbody>
-                        {movieData.map(renderMovies)}
+                        {items.map((item) => (
+                            <tr key={item.imdbID}>
+                                <MTd>{item.Title}</MTd>
+                                <MTd>{item.Year}</MTd>
+                                <MTd>{item.imdbID}</MTd>
+                                <MTd>{item.Type}</MTd>
+                                <MTd>Open modal</MTd>
+                            </tr>
+                        ))}
                     </tbody>
                 </MTable>
-            </Fragment>
+                <br />
+            </>
+        );
+    }
+
+    return (
+        <>
+            {ProductTable()}
         </>
+
     )
 }
 export default MoviesTable
