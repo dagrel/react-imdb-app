@@ -70,9 +70,36 @@ const MoviesTable = () => {
             return sortConfig.key === name ? sortConfig.direction : undefined;
         }
 
+        const filterTable = () => {
+
+            // let dropdown, table, rows, cells, country, filter;
+            // dropdown = document.getElementById("countriesDropdown");
+            // table = document.getElementById("myTable");
+            // rows = table.getElementsByTagName("tr");
+            // filter = dropdown.value;
+            
+            // return (
+            //     <>
+            //         <label style={{ marginRight: "6px" }}>Filtrer på type</label>
+            //         <select>
+
+            //             <option></option>
+            //             <option>Movie</option>
+            //             <option>Series</option>
+            //         </select>
+
+            //     </>
+            // )
+        }
+
+
         return (
             <>
                 <h3>Filmer eller serier som inneholder ordet "Code" fra 2020</h3>
+
+                <div>{filterTable()}</div>
+                <br />
+
                 <MTable>
                     <thead>
                         <Mtr >
