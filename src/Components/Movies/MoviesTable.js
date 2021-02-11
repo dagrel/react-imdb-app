@@ -76,6 +76,7 @@ const MoviesTable = () => {
         }
 
         const handleChange = () => {
+
             let value = "e"
         }
 
