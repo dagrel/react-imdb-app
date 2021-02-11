@@ -24,7 +24,6 @@ const MoviesTable = () => {
             console.log(error);
         }
     }
-    console.log(movieData)
 
     const MTable = styled.table`
         border-collapse: collapse; 
@@ -59,6 +58,12 @@ const MoviesTable = () => {
         margin-bottom: 1px;
     `
 
+    useEffect(() => {
+        movieData.filter(movie => movie.Type === "series").map(filteredType => {
+            console.log(filteredType)
+        })
+
+    },[movieData])
 
     const ProductTable = () => {
 
@@ -70,34 +75,17 @@ const MoviesTable = () => {
             return sortConfig.key === name ? sortConfig.direction : undefined;
         }
 
-        const filterTable = () => {
-
-            // let dropdown, table, rows, cells, country, filter;
-            // dropdown = document.getElementById("countriesDropdown");
-            // table = document.getElementById("myTable");
-            // rows = table.getElementsByTagName("tr");
-            // filter = dropdown.value;
-            
-            // return (
-            //     <>
-            //         <label style={{ marginRight: "6px" }}>Filtrer på type</label>
-            //         <select>
-
-            //             <option></option>
-            //             <option>Movie</option>
-            //             <option>Series</option>
-            //         </select>
-
-            //     </>
-            // )
+        const handleChange = () => {
+            let value = "e"
         }
-
 
         return (
             <>
                 <h3>Filmer eller serier som inneholder ordet "Code" fra 2020</h3>
 
-                <div>{filterTable()}</div>
+                <div>
+                    <select id="type" ></select>
+                </div>
                 <br />
 
                 <MTable>
