@@ -1,8 +1,7 @@
 import React, { useState, useEffect, } from 'react'
 import useSortableData from "../CustomHooks/TableSort"
 import styled from '@emotion/styled';
-//import { Button, ButtonTwo } from "../StyledComponents/StyledComponents"
-
+import TableFilter  from "../CustomHooks/TableFilter";
 const MoviesTable = () => {
 
     const [movieData, setMovieData] = useState([])
@@ -58,12 +57,12 @@ const MoviesTable = () => {
         margin-bottom: 1px;
     `
 
-    useEffect(() => {
-        movieData.filter(movie => movie.Type === "series").map(filteredType => {
-            console.log(filteredType)
-        })
+    // useEffect(() => {
+    //     movieData.filter(movie => movie.Type === "series").map(filteredType => {
+    //         console.log(filteredType)
+    //     })
 
-    },[movieData])
+    // }, [movieData])
 
     const ProductTable = () => {
 
@@ -75,8 +74,8 @@ const MoviesTable = () => {
             return sortConfig.key === name ? sortConfig.direction : undefined;
         }
 
-        const handleChange = () => {
-
+        const handleChange = (yy) => {
+            console.log("yy")
             let value = "e"
         }
 
@@ -84,8 +83,8 @@ const MoviesTable = () => {
             <>
                 <h3>Filmer eller serier som inneholder ordet "Code" fra 2020</h3>
 
-                <div>
-                    <select id="type" ></select>
+                <div style={{width: 200}}>
+                    <TableFilter movies={movieData} />
                 </div>
                 <br />
 
