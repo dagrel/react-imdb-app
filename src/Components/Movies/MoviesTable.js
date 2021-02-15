@@ -1,10 +1,13 @@
 import React, { useState, useEffect, } from 'react'
 import useSortableData from "../CustomHooks/TableSort"
 import styled from '@emotion/styled';
-import TableFilter  from "../CustomHooks/TableFilter";
+import TableFilter from "../CustomHooks/TableFilter";
+
 const MoviesTable = () => {
 
     const [movieData, setMovieData] = useState([])
+    const [value, setValue] = useState(null)
+
 
     useEffect(() => {
         getMovies()
@@ -56,13 +59,16 @@ const MoviesTable = () => {
         padding: 0.5em;
         margin-bottom: 1px;
     `
-
-    // useEffect(() => {
-    //     movieData.filter(movie => movie.Type === "series").map(filteredType => {
-    //         console.log(filteredType)
-    //     })
-
-    // }, [movieData])
+    useEffect(() => {
+        if (value === "movie") {
+            console.log("filmtabell")
+        } else if (value === "series") {
+            console.log("serie tabell")
+        }
+        else {
+            console.log("tabell med begge")
+        }
+    }, [value])
 
     const ProductTable = () => {
 
@@ -74,17 +80,20 @@ const MoviesTable = () => {
             return sortConfig.key === name ? sortConfig.direction : undefined;
         }
 
-        const handleChange = (yy) => {
-            console.log("yy")
-            let value = "e"
+        const resetFilter = () => {
+            setValue(null)
         }
 
         return (
             <>
-                <h3>Filmer eller serier som inneholder ordet "Code" fra 2020</h3>
+                <h3>Filmer eller serier som inneholder ordet "Covid" fra 2020</h3>
 
-                <div style={{width: 200}}>
-                    <TableFilter movies={movieData} />
+                <div style={{ width: 200 }}>
+                    <TableFilter options={movieData}
+                        prompt="Velg type..."
+                        value={value}
+                        onChange={val => setValue(val)} />
+                    <div><button onClick={resetFilter}>Nullstill filter</button></div>
                 </div>
                 <br />
 
