@@ -5,33 +5,46 @@ import { MTable, Mtr, MTh, MTd } from "./Styling";
 
 const MoviesTable = () => {
 
-    const [movieData, setMovieData] = useState([])
+    const [data, setData] = useState([])
     const [value, setValue] = useState(null)
 
-
     useEffect(() => {
-        getMovies()
+        getData()
     }, [])
 
-    const getMovies = async () => {
+    const getData = async () => {
 
-        const url = `http://www.omdbapi.com/?s=covid&y=2020&apikey=616df5e1`
+        const url = `http://www.omdbapi.com/?s=covid&y=2020&apikey=616df5e1&`
         try {
             const response = await fetch(url);
             const result = await response.json();
 
-            setMovieData(result.Search)
+            setData(result.Search)
 
         } catch (error) {
             console.log(error);
         }
     }
 
+    const filterType = () => {
+        
+    }
+
     useEffect(() => {
         if (value === "movie") {
             console.log("filmtabell")
+
+            let movieArray = [...data]
+            const result = movieArray.filter(ele => ele.Type === "movie")
+            setData(result)
+            setValue(null)
+
         } else if (value === "series") {
-            console.log("serie tabell")
+            console.log("serietabell")
+            let seriesArray = [...data]
+            const result = seriesArray.filter(ele => ele.Type === "series")
+            setData(result)
+            setValue(null)
         }
         else {
             console.log("tabell med begge")
@@ -40,7 +53,7 @@ const MoviesTable = () => {
 
     const ProductTable = () => {
 
-        const { items, requestSort, sortConfig } = useSortableData(movieData)
+        const { items, requestSort, sortConfig } = useSortableData(data)
         const getClassNamesFor = (name) => {
             if (!sortConfig) {
                 return;
@@ -57,7 +70,7 @@ const MoviesTable = () => {
                 <h3>Filmer eller serier som inneholder ordet "Covid" fra 2020</h3>
 
                 <div style={{ width: 200 }}>
-                    <TableFilter options={movieData}
+                    <TableFilter options={data}
                         prompt="Velg type..."
                         value={value}
                         onChange={val => setValue(val)} />
