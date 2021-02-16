@@ -32,19 +32,14 @@ const MoviesTable = () => {
 
     useEffect(() => {
         if (value === "movie") {
-            console.log("filmtabell")
-
             let movieArray = [...data]
             const result = movieArray.filter(ele => ele.Type === "movie")
             setData(result)
-            setValue(null)
 
         } else if (value === "series") {
-            console.log("serietabell")
             let seriesArray = [...data]
             const result = seriesArray.filter(ele => ele.Type === "series")
             setData(result)
-            setValue(null)
         }
         else {
             console.log("tabell med begge")
@@ -63,6 +58,7 @@ const MoviesTable = () => {
 
         const resetFilter = () => {
             setValue(null)
+            getData()
         }
 
         return (
