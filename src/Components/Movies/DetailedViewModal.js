@@ -15,11 +15,10 @@ const DetailedViewModal = ({ visible, toggle, id }) => {
         )
     }
 
-    return (
-        <>
-        <Modal visible={visible} toggle={toggle} body={modalBody()}> 
-        </Modal>
-        </>
-    )
+return (
+    <>
+    <Modal visible={visible} toggle={toggle} body={modalBody()} /> 
+    </>
+)
 }
 export default DetailedViewModal;

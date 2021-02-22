@@ -60,6 +60,10 @@ const MoviesTable = () => {
             getData()
         }
 
+        const testClick = (i) => {
+            console.log(i)
+        }
+
         return (
             <>
                 <h3>Filmer eller serier som inneholder ordet "Covid" fra 2020</h3>
@@ -85,14 +89,15 @@ const MoviesTable = () => {
                     </thead>
 
                     <tbody>
-                        {items.map((item) => (
-                            <tr key={item.imdbID}>
+                        {items.map((item, i) => (
+                            <tr key={i}>
                                 <MTd>{item.Title}</MTd>
                                 <MTd>{item.Year}</MTd>
                                 <MTd>{item.imdbID}</MTd>
                                 <MTd>{item.Type}</MTd>
                                 <MTd><button onClick={toggle}>Detaljer</button>
-                                    <DetailedViewModal visible={visible} toggle={toggle} id={123} /></MTd>
+                                    <DetailedViewModal visible={visible} toggle={toggle} id={item.imdbID} />
+                                </MTd>
                             </tr>
                         ))}
                     </tbody>
