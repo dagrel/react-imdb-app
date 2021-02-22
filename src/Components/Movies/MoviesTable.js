@@ -1,6 +1,6 @@
 import React, { useState, useEffect, } from 'react'
 import useSortableData from "../CustomHooks/TableSort"
-import TableFilter from "../CustomHooks/TableFilter";
+import TableFilter from "../CustomComponents/TableFilter";
 import { MTable, Mtr, MTh, MTd } from "./Styling";
 
 const MoviesTable = () => {
