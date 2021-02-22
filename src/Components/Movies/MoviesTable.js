@@ -29,10 +29,6 @@ const MoviesTable = () => {
         }
     }
 
-    const filterType = () => {
-
-    }
-
     useEffect(() => {
         if (value === "movie") {
             let movieArray = [...data]
@@ -68,9 +64,6 @@ const MoviesTable = () => {
             <>
                 <h3>Filmer eller serier som inneholder ordet "Covid" fra 2020</h3>
 
-                <button onClick={toggle}>Show Modal</button>
-                <DetailedViewModal visible={visible} toggle={toggle} id={123} />
-
                 <div style={{ width: 200 }}>
                     <TableFilter options={data}
                         prompt="Velg type..."
@@ -98,7 +91,8 @@ const MoviesTable = () => {
                                 <MTd>{item.Year}</MTd>
                                 <MTd>{item.imdbID}</MTd>
                                 <MTd>{item.Type}</MTd>
-                                <MTd>Open modal</MTd>
+                                <MTd><button onClick={toggle}>Detaljer</button>
+                                    <DetailedViewModal visible={visible} toggle={toggle} id={123} /></MTd>
                             </tr>
                         ))}
                     </tbody>

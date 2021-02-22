@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from "react-dom";
-import "./ModalStyles.css"
+import Modal from "../CustomComponents/Modal"
 
-const DetailedViewModal = ({ visible, toggle }) => {
+const DetailedViewModal = ({ visible, toggle, id }) => {
 
-    const Modal = () => visible ? ReactDOM.createPortal(
-        <div className="modal">
-            <div className="modal-pop" role="dialog" aria-modal="true">
-                <h3>Hello World</h3>
-                <p>Et sit saepe velit tenetur et consequatur in. Nihil doloribus nulla nulla rem. Soluta illo et asperiores numquam earum nesciunt. Vero odio voluptatem sunt sunt laboriosam.</p>
-                <button type="button" onClick={toggle}>Close</button>
-            </div>
-            <div className="modal-overlay"></div>
-        </div>, document.body
-    ) : null;
+    useEffect(() => {
+        if (visible) console.log(id)
+    })
+
+    const modalBody = () => {
+        return (
+            <>
+            <h1>Film info</h1>
+            </>
+        )
+    }
 
     return (
         <>
-        {Modal(visible, toggle)}
+        <Modal visible={visible} toggle={toggle} body={modalBody()}> 
+        </Modal>
         </>
     )
 }
-
 export default DetailedViewModal;
