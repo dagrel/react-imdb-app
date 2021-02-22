@@ -1,5 +1,7 @@
 import React, { useState, useEffect, } from 'react'
 import useSortableData from "../CustomHooks/TableSort"
+import DetailedViewModal from './DetailedViewModal';
+import useModal from '../CustomHooks/useModal';
 import TableFilter from "../CustomComponents/TableFilter";
 import { MTable, Mtr, MTh, MTd } from "./Styling";
 
@@ -7,6 +9,7 @@ const MoviesTable = () => {
 
     const [data, setData] = useState([])
     const [value, setValue] = useState(null)
+    const { toggle, visible } = useModal();
 
     useEffect(() => {
         getData()
@@ -27,7 +30,7 @@ const MoviesTable = () => {
     }
 
     const filterType = () => {
-        
+
     }
 
     useEffect(() => {
@@ -64,6 +67,9 @@ const MoviesTable = () => {
         return (
             <>
                 <h3>Filmer eller serier som inneholder ordet "Covid" fra 2020</h3>
+
+                <button onClick={toggle}>Show Modal</button>
+                <DetailedViewModal visible={visible} toggle={toggle} id={123} />
 
                 <div style={{ width: 200 }}>
                     <TableFilter options={data}
