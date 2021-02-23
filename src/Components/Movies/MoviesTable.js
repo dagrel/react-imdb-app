@@ -9,7 +9,7 @@ const MoviesTable = () => {
 
     const [data, setData] = useState([])
     const [value, setValue] = useState(null)
-    const { toggle, visible } = useModal();
+    const { toggle, visibleId } = useModal();
 
     useEffect(() => {
         getData()
@@ -95,8 +95,11 @@ const MoviesTable = () => {
                                 <MTd>{item.Year}</MTd>
                                 <MTd>{item.imdbID}</MTd>
                                 <MTd>{item.Type}</MTd>
-                                <MTd><button onClick={toggle}>Detaljer</button>
-                                    <DetailedViewModal visible={visible} toggle={toggle} id={item.imdbID} />
+                                <MTd><button
+                                    onClick={toggle(item.imdbID)}>Detaljer</button>
+                                    <DetailedViewModal
+                                        visible={visibleId === item.imdbID}
+                                        toggle={toggle(null)} id={item.imdbID} />
                                 </MTd>
                             </tr>
                         ))}
