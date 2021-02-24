@@ -60,23 +60,16 @@ const MoviesTable = () => {
             getData()
         }
 
-        const testClick = (i) => {
-            console.log(i)
-        }
-
         return (
             <>
                 <h3>Filmer eller serier som inneholder ordet "Covid" fra 2020</h3>
-
-                <div style={{ width: 200 }}>
+            
                     <TableFilter options={data}
                         prompt="Velg type..."
                         value={value}
                         onChange={val => setValue(val)} />
                     <div><button onClick={resetFilter}>Nullstill filter</button></div>
-                </div>
-                <br />
-
+                
                 <MTable>
                     <thead>
                         <Mtr >
@@ -94,7 +87,7 @@ const MoviesTable = () => {
                                 <MTd>{item.Title}</MTd>
                                 <MTd>{item.Year}</MTd>
                                 <MTd>{item.imdbID}</MTd>
-                                <MTd>{item.Type}</MTd>
+                                <MTd>{item.Type.charAt(0).toUpperCase() + item.Type.slice(1)}</MTd>
                                 <MTd><button
                                     onClick={toggle(item.imdbID)}>Detaljer</button>
                                     <DetailedViewModal

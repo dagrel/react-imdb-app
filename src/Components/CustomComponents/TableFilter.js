@@ -18,7 +18,7 @@ const TableFilter = ({options, prompt, value, onChange}) => {
     }, [options])
 
     return (
-        <div className="dropdown">
+        <div className="dropdown" style={{width:200}}>
             <div className="control" onClick={() => setOpen(prev => !prev)}>
                 <div className="selected-value">{value ? value : prompt}</div>
                 <div className={`arrow ${open ? "open" : null}`}/>
@@ -32,7 +32,9 @@ const TableFilter = ({options, prompt, value, onChange}) => {
                     }}>{option}</div>)
                 }
             </div>
+            <br />
         </div>
+        
     );
 };
 
