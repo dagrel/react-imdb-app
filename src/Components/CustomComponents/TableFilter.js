@@ -6,6 +6,7 @@ const TableFilter = ({options, prompt, value, onChange}) => {
     // console.log(options.map(option => option.imdbID))
     const [filterOptions, setFilterOptions] = useState([])
     const [open, setOpen] = useState(false)
+    const [stateValue, setStateValue] = useState(value)
 
     // funksjon som filtrerer evt duplikate variabler i arrayet
     useMemo(() => {
@@ -16,6 +17,11 @@ const TableFilter = ({options, prompt, value, onChange}) => {
 
         setFilterOptions(uniqueOptions)
     }, [options])
+
+    const resetFilter = () => {
+        setStateValue(null)
+       // getData()
+    }
 
     return (
         <div className="dropdown" style={{width:200}}>
@@ -32,6 +38,7 @@ const TableFilter = ({options, prompt, value, onChange}) => {
                     }}>{option}</div>)
                 }
             </div>
+            <div><button onClick={resetFilter}>Nullstill filter</button></div>
             <br />
         </div>
         

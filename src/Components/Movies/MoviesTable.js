@@ -68,7 +68,7 @@ const MoviesTable = () => {
                         prompt="Velg type..."
                         value={value}
                         onChange={val => setValue(val)} />
-                    <div><button onClick={resetFilter}>Nullstill filter</button></div>
+                    {/* <div><button onClick={resetFilter}>Nullstill filter</button></div> */}
                 
                 <MTable>
                     <thead>
